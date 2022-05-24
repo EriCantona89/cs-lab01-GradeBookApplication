@@ -9,10 +9,16 @@ using Newtonsoft.Json.Linq;
 
 namespace GradeBook.GradeBooks
 {
+    
     public class BaseGradeBook
     {
+        
+        
         public string Name { get; set; }
         public List<Student> Students { get; set; }
+        public GradeBookType Type { get; set; }
+
+        
 
         public BaseGradeBook(string name)
         {
@@ -225,8 +231,14 @@ namespace GradeBook.GradeBooks
         /// </summary>
         /// <returns>The to gradebook.</returns>
         /// <param name="json">Json.</param>
+        ///
+        
+        
+        
         public static dynamic ConvertToGradeBook(string json)
         {
+            
+            
             // Get GradeBookType from the GradeBook.Enums namespace
             var gradebookEnum = (from assembly in AppDomain.CurrentDomain.GetAssemblies()
                                  from type in assembly.GetTypes()
@@ -265,6 +277,10 @@ namespace GradeBook.GradeBooks
                              select type).FirstOrDefault();
             
             return JsonConvert.DeserializeObject(json, gradebook);
+            
         }
+        
+        
+        
     }
 }
